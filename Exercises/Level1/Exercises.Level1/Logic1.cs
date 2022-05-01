@@ -19,8 +19,14 @@ public class Logic1
     /// </summary>
     public bool CigarParty(int cigars, bool isWeekend)
     {
-        throw new NotImplementedException();
+        if (cigars >= 40 && (isWeekend || cigars <= 60))
+        {
+            return true;
+        }
+
+        return false;
     }
+
 
     /// <summary>
     /// You and your date are trying to get a table at a restaurant. The parameter "you" is the
@@ -36,7 +42,24 @@ public class Logic1
     /// </summary>
     public int DateFashion(int you, int date)
     {
-        throw new NotImplementedException();
+        // 1. Ja kaut viens ir 2 vai mazāk, tad 0
+
+        if (you <= 2 || date <= 2)
+        {
+            return 0;
+        }
+
+        // 2. Ja kaut viens ir 8 vai vairāk, tad 2
+
+        if (you >= 8 || date >= 8)
+        {
+            return 2;
+        }
+
+        // 3. citādi 1
+
+        return 1;
+
     }
 
     /// <summary>
@@ -51,7 +74,19 @@ public class Logic1
     /// </summary>
     public bool SquirrelPlay(int temp, bool isSummer)
     {
-        throw new NotImplementedException();
+        int higherTemp = 90;
+
+        if (isSummer)
+        {
+            higherTemp += 10;
+        }
+
+        if (temp >=  60 && temp <= higherTemp)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -67,7 +102,26 @@ public class Logic1
     /// </summary>
     public int CaughtSpeeding(int speed, bool isBirthday)
     {
-        throw new NotImplementedException();
+        // 1. Ja ātrums ir 60 vai mazāk tad iznākums ir 0
+
+        if (isBirthday)
+        {
+            speed -= 5;
+        }
+
+        if (speed <= 60) 
+        {
+            return 0;
+
+        }
+
+        if (speed >= 81)
+        {
+            return 2;
+        }
+
+        return 1;
+
     }
 
     /// <summary>
@@ -80,7 +134,12 @@ public class Logic1
     /// </summary>
     public int SortaSum(int a, int b)
     {
-        throw new NotImplementedException();
+        int sum = a + b;
+        if (sum >= 10 && sum < 19)
+        {
+            return 20;
+        }
+        return sum;
     }
 
     /// <summary>
@@ -96,8 +155,24 @@ public class Logic1
     /// </summary>
     public string AlarmClock(int day, bool vacation)
     {
-        throw new NotImplementedException();
+
+        if (day == 0 || day == 6)
+        {
+            if (vacation)
+            {
+                return "off";
+            }
+            return "10:00";
+        }
+
+        if (vacation)
+        {
+            return "10:00";
+        }
+
+        return "7:00";
     }
+  
 
     /// <summary>
     /// The number 6 is a truly great number. Given two int values, a and b, return true if either
@@ -110,8 +185,28 @@ public class Logic1
     /// </summary>
     public bool Love6(int a, int b)
     {
-        throw new NotImplementedException();
+        if (a == 6 || b == 6)
+        {
+            return true;
+        }
+
+        if ( a + b == 6)
+        {
+            return true;
+        }
+
+        int substracted = a - b;
+        int difference = Math.Abs(substracted);
+
+        if (difference == 6)
+        {
+            return true;
+        }
+        return false;
     }
+
+
+
 
     /// <summary>
     /// Given a number n, return true if n is in the range 1..10, inclusive. Unless outsideMode is
@@ -124,8 +219,31 @@ public class Logic1
     /// </summary>
     public bool In1To10(int n, bool outsideMode)
     {
-        throw new NotImplementedException();
+
+        if (outsideMode)
+        {
+            if (n >= 1 && n <= 10 || n < 1 || n > 10)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        if (!outsideMode)
+        {
+            if (n >= 1 && n <= 10)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        return default;
+
     }
+
+
 
     /// <summary>
     /// We'll say a number is special if it is a multiple of 11 or if it is one more than a multiple of

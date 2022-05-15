@@ -610,12 +610,13 @@ public class Logic1
     /// </summary>
     public int SumLimit(int a, int b)
     {
-        //int sum = a + b;
-        //int aLength = String.valueOf(a)
+        int sum = a + b;
+        int aLength = a.ToString().Length;
+        int sumLength = sum.ToString().Length;
 
 
-        //if (sumLength == aLength)
-        //    return sum;
+        if (sumLength == aLength)
+            return sum;
 
         return a;
     }

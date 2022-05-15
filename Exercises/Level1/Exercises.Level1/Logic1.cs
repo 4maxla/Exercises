@@ -19,12 +19,10 @@ public class Logic1
     /// </summary>
     public bool CigarParty(int cigars, bool isWeekend)
     {
-        if (cigars >= 40 && (isWeekend || cigars <= 60))
         {
-            return true;
+            return cigars >= 40 && (cigars <= 60 || isWeekend);
         }
 
-        return false;
     }
 
 
@@ -81,7 +79,7 @@ public class Logic1
             higherTemp += 10;
         }
 
-        if (temp >=  60 && temp <= higherTemp)
+        if (temp >= 60 && temp <= higherTemp)
         {
             return true;
         }
@@ -109,7 +107,7 @@ public class Logic1
             speed -= 5;
         }
 
-        if (speed <= 60) 
+        if (speed <= 60)
         {
             return 0;
 
@@ -172,7 +170,7 @@ public class Logic1
 
         return "7:00";
     }
-  
+
 
     /// <summary>
     /// The number 6 is a truly great number. Given two int values, a and b, return true if either
@@ -190,7 +188,7 @@ public class Logic1
             return true;
         }
 
-        if ( a + b == 6)
+        if (a + b == 6)
         {
             return true;
         }
@@ -222,24 +220,9 @@ public class Logic1
 
         if (outsideMode)
         {
-            if (n >= 1 && n <= 10 || n < 1 || n > 10)
-            {
-                return true;
-            }
-            return false;
+            return n <= 1 || n >= 10;
         }
-
-
-        if (!outsideMode)
-        {
-            if (n >= 1 && n <= 10)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        return default;
+        return n >= 1 && n <= 10;
 
     }
 
@@ -255,7 +238,7 @@ public class Logic1
     /// </summary>
     public bool SpecialEleven(int n)
     {
-        throw new NotImplementedException();
+        return n % 11 == 0 || n % 11 == 1;
     }
 
     /// <summary>
@@ -268,7 +251,7 @@ public class Logic1
     /// </summary>
     public bool More20(int n)
     {
-        throw new NotImplementedException();
+        return (n % 20) == 1 || (n % 20) == 2;
     }
 
     /// <summary>
@@ -281,7 +264,7 @@ public class Logic1
     /// </summary>
     public bool Old35(int n)
     {
-        throw new NotImplementedException();
+        return n % 3 == 0 ^ n % 5 == 0;
     }
 
     /// <summary>
@@ -295,7 +278,8 @@ public class Logic1
     /// </summary>
     public bool Less20(int n)
     {
-        throw new NotImplementedException();
+        return (n + 1) % 20 == 0 || (n + 2) % 20 == 0;
+
     }
 
     /// <summary>
@@ -309,7 +293,7 @@ public class Logic1
     /// </summary>
     public bool NearTen(int num)
     {
-        throw new NotImplementedException();
+        return (num + 2) % 10 <= 4;
     }
 
     /// <summary>
@@ -322,7 +306,11 @@ public class Logic1
     /// </summary>
     public int TeenSum(int a, int b)
     {
-        throw new NotImplementedException();
+        if (a > 12 && a < 20 || b > 12 && b < 20)
+        {
+            return 19;
+        }
+        return a + b;
     }
 
     /// <summary>
@@ -336,7 +324,19 @@ public class Logic1
     /// </summary>
     public bool AnswerCell(bool isMorning, bool isMom, bool isAsleep)
     {
-        throw new NotImplementedException();
+        if (!isAsleep)
+        {
+            if (!isMom)
+            {
+                if (!isMorning)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -352,7 +352,15 @@ public class Logic1
     /// </summary>
     public int TeaParty(int tea, int candy)
     {
-        throw new NotImplementedException();
+        if (tea <= 4 || candy <= 4)
+        {
+            return 0;
+        }
+        if (candy < (2 * tea) && tea < (2 * candy))
+        {
+            return 1;
+        }
+        return 2;
     }
 
     /// <summary>
@@ -366,7 +374,20 @@ public class Logic1
     /// </summary>
     public string FizzString(string str)
     {
-        throw new NotImplementedException();
+
+        //bool fizz = str.charAt(0) == 'f';
+        //bool buzz = str.charAt(str.length() - 1) == 'b';
+
+        bool fizz = str[0] ==  'f';
+        bool buzz = str[str.Length - 1] == 'b';
+
+        if (fizz && buzz) return "FizzBuzz";
+        if (fizz) return "Fizz";
+        if (buzz) return "Buzz";
+
+        return str;
+
+
     }
 
     /// <summary>
@@ -382,7 +403,13 @@ public class Logic1
     /// </summary>
     public string FizzString2(int n)
     {
-        throw new NotImplementedException();
+        if (n % 3 == 0 && n % 5 == 0)
+            return "FizzBuzz!";
+        if (n % 3 == 0)
+            return "Fizz!";
+        if (n % 5 == 0)
+            return "Buzz!";
+        return n + "!";
     }
 
     /// <summary>
@@ -394,7 +421,7 @@ public class Logic1
     /// </summary>
     public bool TwoAsOne(int a, int b, int c)
     {
-        throw new NotImplementedException();
+        return (a == b + c) || (b == c + a) || (c == a + b);
     }
 
     /// <summary>
@@ -407,11 +434,15 @@ public class Logic1
     /// </summary>
     public bool InOrder(int a, int b, int c, bool bOk)
     {
-        throw new NotImplementedException();
+        if (bOk)
+        {
+            return (b < c);
+        }
+        return (a < b && b < c);
     }
 
     /// <summary>
-    /// iven three ints, a b c, return true if they are in strict increasing order, such as 2 5 11, or
+    /// Given three ints, a b c, return true if they are in strict increasing order, such as 2 5 11, or
     /// 5 6 7, but not 6 5 7 or 5 5 7. However, with the exception that if "equalOk" is true,
     /// equality is allowed, such as 5 5 7 or 5 5 5.
     /// 
@@ -421,7 +452,7 @@ public class Logic1
     /// </summary>
     public bool InOrderEqual(int a, int b, int c, bool bOk)
     {
-        throw new NotImplementedException();
+        return (!bOk) ? a < b && b < c : a <= b && b <= c;
     }
 
     /// <summary>
@@ -435,7 +466,7 @@ public class Logic1
     /// </summary>
     public bool LastDigit(int a, int b, int c)
     {
-        throw new NotImplementedException();
+        return a % 10 == b % 10 || a % 10 == c % 10 || c % 10 == b % 10;
     }
 
     /// <summary>
@@ -448,7 +479,7 @@ public class Logic1
     /// </summary>
     public bool LessBy10(int a, int b, int c)
     {
-        throw new NotImplementedException();
+        return Math.Abs(a - b) >= 10 || Math.Abs(b - c) >= 10 || Math.Abs(a - c) >= 10;
     }
 
     /// <summary>
@@ -462,7 +493,8 @@ public class Logic1
     /// </summary>
     public int WithoutDoubles(int die1, int die2, bool noDoubles)
     {
-        throw new NotImplementedException();
+        if (noDoubles && die1 == die2) return (die1 != 6) ? die1 + 1 + die2 : 1 + die2;
+        return die1 + die2;
     }
 
     /// <summary>
@@ -477,8 +509,15 @@ public class Logic1
     /// </summary>
     public int MaxMod5(int a, int b)
     {
-        throw new NotImplementedException();
-    }
+        if (a == b)
+             return 0;
+
+        if (a % 5 == b % 5)
+            return Math.Min(a,b);
+       
+        return Math.Max(a,b);
+
+}
 
     /// <summary>
     /// You have a red lottery ticket showing ints a, b, and c, each of which is 0, 1, or 2. If they
@@ -492,7 +531,13 @@ public class Logic1
     /// </summary>
     public int RedTicket(int a, int b, int c)
     {
-        throw new NotImplementedException();
+        if (a == b && b == c)
+        {
+            if (a == 2) return 10;
+            else return 5;
+        }
+        else if (b != a && c != a) return 1;
+        else return 0;
     }
 
     /// <summary>
@@ -506,7 +551,14 @@ public class Logic1
     /// </summary>
     public int GreenTicket(int a, int b, int c)
     {
-        throw new NotImplementedException();
+        if ((a != b) && (a != c) && (b != c))
+            return 0;
+
+        if ((a == b) && (a == c) && (b == c))
+            return 20;
+
+        else return 10;
+
     }
 
     /// <summary>
@@ -521,7 +573,15 @@ public class Logic1
     /// </summary>
     public int BlueTicket(int a, int b, int c)
     {
-        throw new NotImplementedException();
+        if (a + b == 10 || b + c == 10 || c + a == 10)
+        {
+            return 10;
+        }
+        if (a == c + 10 || b == c + 10)
+        {
+            return 5;
+        }
+        return 0;
     }
 
     /// <summary>
@@ -535,7 +595,7 @@ public class Logic1
     /// </summary>
     public bool ShareDigit(int a, int b)
     {
-        throw new NotImplementedException();
+        return a / 10 == b / 10 || a / 10 == b % 10 || a % 10 == b % 10 || a % 10 == b / 10;
     }
 
     /// <summary>
@@ -550,7 +610,14 @@ public class Logic1
     /// </summary>
     public int SumLimit(int a, int b)
     {
-        throw new NotImplementedException();
+        //int sum = a + b;
+        //int aLength = String.valueOf(a)
+
+
+        //if (sumLength == aLength)
+        //    return sum;
+
+        return a;
     }
 }
 
